@@ -1,0 +1,142 @@
+*,
+h1,
+h2 {
+  box-sizing: border-box;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #463650;
+}
+
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 600px;
+  height: 650px;
+  margin: 0 auto;
+  background-color: #188778;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-box-shadow: -2px 7px 16px 7px rgba(0, 0, 0, 0.71);
+  box-shadow: -2px 7px 16px 7px rgba(0, 0, 0, 0.71);
+}
+
+.container h1 {
+  padding: 30px 0;
+  font-size: 38px;
+}
+
+.random-num,
+.random-num p {
+  font-size: 22px;
+  transition: 0.3s all;
+}
+
+.random-num.error {
+  color: rgb(186, 13, 13);
+}
+.random-num.generated {
+  color: rgb(28, 191, 28);
+}
+
+.update-random {
+  margin-top: 20px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #463650;
+  color: #fff;
+  transition: 0.3s all;
+}
+
+.update-random:hover {
+  background-color: #665174;
+}
+
+.tries {
+  margin-top: 20px;
+}
+
+.selected-numbers {
+  margin-top: 20px;
+}
+
+.game-result {
+  margin-top: 20px;
+  width: 60%;
+  border-radius: 15px;
+}
+
+.game-result.win {
+  background-color: rgb(28, 191, 28);
+  color: #000;
+}
+
+.game-result.loose {
+  background-color: rgb(186, 13, 13);
+}
+
+.buttons {
+  position: absolute;
+  width: 100%;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  width: calc(100% / 3 - 50px);
+  padding: 10px 0;
+  margin: 5px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #463650;
+  color: #fff;
+  transition: 0.3s all;
+}
+.btn:hover {
+  background-color: #665174;
+}
+
+.clear {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 35px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #463650;
+  color: #fff;
+  transition: 0.3s all;
+}
+.clear:hover {
+  background-color: #665174;
+}
+
+.clear.error {
+  color: rgb(186, 13, 13);
+}

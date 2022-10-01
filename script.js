@@ -1,37 +1,60 @@
-let randomNumber = Math.floor(Math.random() * 10);
-document.querySelector(".random-num").innerHTML = randomNumber;
+let randomNumber = null;
 
-const updateRandom = document.querySelector(".update-random");
+let arrNums = [];
+let tries = 3;
+document.querySelector(".tries").innerHTML = "Tries: " + tries;
 
-updateRandom.onclick = () => {
+function generateRandomNum() {
   randomNumber = Math.floor(Math.random() * 10);
-  document.querySelector(".random-num").innerHTML = randomNumber;
-};
+  console.log(randomNumber);
+  if (randomNumber != null) {
+    document.querySelector(".random-num").classList.add("generated");
+    document.querySelector(".random-num").innerHTML = "Random number genarated";
+  }
+}
 
-let guessNum = "";
-let allGuessNum = [];
-const btnNum = document.querySelector(".buttons");
-const gameResult = document.querySelector(".game-result");
+function renderHistory() {
+  document.querySelector(".selected-numbers").innerHTML = "Yours numbers: " + arrNums.join(" ");
+}
 
-btnNum.onclick = (e) => {
-  if (!e.target.classList.contains("btn")) return;
-  guessNum = e.target.textContent;
-  allGuessNum.push(guessNum);
-  allGuessNum.length = Math.min(allGuessNum.length, 3);
-
-  // console.log(guessNum, allGuessNum);
-
-  if (guessNum == randomNumber) {
-    gameResult.innerHTML = "Yeah, you are Winner!!!";
-    return;
-  } else {
-    gameResult.innerHTML = "Nope, Looser...";
-    if (allGuessNum.length <= 3) {
-      gameResult.innerHTML = "You lost your chance poor man";
+function handleButtonClick(value) {
+  if (tries > 0) {
+    if (randomNumber == value) {
+      document.querySelector(".game-result").innerHTML = "Good boiii, wins numbers is " + value;
+      document.querySelector(".game-result").classList.add("win");
       return;
     }
-  }
+    arrNums.push(value);
+    tries--;
+    document.querySelector(".tries").innerHTML = "Tries: " + tries;
+    console.log(tries);
 
-  const selectedNums = document.querySelector(".selected-numbers");
-  selectedNums.innerHTML = "Your numbers " + allGuessNum;
-};
+    renderHistory();
+  } else {
+    if (randomNumber == null) {
+      document.querySelector(".random-num").classList.add("error");
+      document.querySelector(".clear").classList.add("error");
+      document.querySelector(".random-num").innerHTML = "You didn't generate a number";
+    } else {
+      document.querySelector(".game-result").innerHTML = "Dude you are looser, wins numder is " + randomNumber;
+      document.querySelector(".game-result").classList.add("loose");
+    }
+  }
+}
+
+function clearResult() {
+  randomNumber = null;
+  tries = 3;
+  arrNums = [];
+
+  document.querySelector(".random-num").innerHTML = "Generade a random number";
+  document.querySelector(".selected-numbers").innerHTML = "Yours numbers " + arrNums.join(" ");
+
+  document.querySelector(".tries").innerHTML = "Tries: " + tries;
+  document.querySelector(".game-result").innerHTML = "";
+  document.querySelector(".random-num").classList.remove("error");
+  document.querySelector(".clear").classList.remove("error");
+  document.querySelector(".game-result").classList.remove("win");
+  document.querySelector(".game-result").classList.remove("loose");
+  document.querySelector(".random-num").classList.remove("generated");
+}
